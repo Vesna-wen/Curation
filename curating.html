@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Sans:wght@300;400;700&display=swap');
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #A8C8DA;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+        .navbar .title {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-left: 70px;
+            margin-bottom: 10px;
+            align-items: center;
+            font-family:'IBM Plex Sans', sans-serif;
+            
+        }
+        .navbar .title .main-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .navbar .nav-buttons a {
+            color: black;
+            text-decoration: none;
+            margin-left: auto; 
+            margin-right: 70px;
+            font-family:'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            pointer-events: auto; /* 允许鼠标点击 */
+    z-index: 9999;
+            
+        }
+        .section {
+            padding: 100px 20px;
+            margin-top: 60px;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+        }
+        .section-divider {
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+    max-width: 200px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+            z-index: 10;
+            height: 2px;
+}
+        .source{
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 10px;
+            text-align: left;
+            color: dimgray;
+            font-style: italic;
+        }
+        
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: -100px;
+            margin-right: -30px;
+        }
+        .content .text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            margin-right: 20px;
+            max-height: 300vh;
+            overflow-y: auto;
+        }
+        .content .image {
+            flex: 1;
+        }
+        .comment-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    margin: 0 auto; /* Center the section */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.comment-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 700; /* Bold title */
+}
+
+.comment-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+.comment-section button {
+    background-color: #fff; /* White button */
+    color: #333; /* Dark text */
+    padding: 12px 24px;
+    font-size: 1.1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-section button:hover {
+    background-color: #ccc; /* Light grey on hover */
+}
+        .footer {
+    background-color: #A8C8DA;
+    color: white;
+    text-align: right; /* 将按钮放到最右侧 */
+    padding: 20px;
+    margin: 0; /* 消除额外的边距 */
+    position: relative;
+    bottom: 0; /* 确保footer在底部 */
+}
+
+.footer button {
+    background-color: #A8C8DA;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans', sans-serif; /* 使用IBM Plex Sans字体 */
+    font-weight: bold;
+    font-size: 18px;/* 加粗字体 */
+    text-align: center;
+}
+
+        .section.bg-colored {
+            background-color: #40434E;
+        }
+        .parttitle{
+            
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -10px;
+            text-align: center;
+        }
+        .statement-section {
+    font-family: 'Georgia', serif;
+    color: #333;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.statement-section .first-letter {
+    float: left;
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 0.8;
+    color: #900; /* 深红色，象征战争与鲜血 */
+    margin-right: 10px;
+}
+
+.statement-section .quote {
+    font-style: italic;
+    color: #555;
+}
+@media (max-width: 768px) {
+    .statement-section {
+        padding: 10px;
+    }
+
+    .statement-section .first-letter {
+        font-size: 48px;
+    }
+}
+        .image {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.clickable-image {
+    margin-right: -30px;
+    margin-top: 150px;
+    margin-left: 50px;
+    height: 70vh;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.clickable-image:hover {
+    transform: scale(1.05);
+}
+
+.image-label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    max-width: 450px;
+    margin-left: 60px;
+}
+        .image-label1 {
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    max-width: 450px;
+    margin-left: 60px;
+}
+
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    margin-top: 5%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border-radius: 4px;
+}
+
+.caption {
+    margin-top: 10px;
+    color: #ccc;
+    text-align: center;
+    font-size: 16px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="title">
+            <div class="main-title">Healing the Wounds of War: <br>KCL’s Legacy in Conflict Medicine </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="#chapter1">Crimean War</a>
+            <a href="#chapter2">World War One</a>
+            <a href="#chapter3">World War Two</a>
+            <a href="reference.html" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;" aria-label="Click to jump to the excel form of reference.">Reference</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content">
+            <div class="text">
+                <h1 style="color: #93D6C7; text-align:center; font-weight: 500">Healing the Wounds of War: <br>KCL’s Legacy in Conflict Medicine</h1>
+                <h1 style="font-size: 28px; font-weight: 300; text-align: center; margin-top: -20px">From Battlefield Scars to Medical Breakthroughs — How War Shaped Modern Medicine</h1>
+                <p style="color:dimgray; margin-top: 200px;text-align: center;max-width: 400px;">Friday 5:00pm-6:00 Group 1</p>
+            </div>
+            <div class="image">
+                <img alt="This is a photograph of a soldier lying in bed on the left and a nurse on the right. It describes the gradual recovery of the soldier under the care of the nurse." src="statement.jpg" style="width: 610px;">
+                <div class="source">
+                    <p>Australian War Memorial, Accession Number H08081</p> 
+                    <p>Public Domain</p> 
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+    <div class="statement-section">
+    <p>
+        <span class="first-letter">T</span>his exhibition charts a century of medical reckoning—where war’s devastation collided with human resolve to forge survival. From Crimea’s cholera-stricken barracks to World War I’s shattered psyches and World War II’s famine-scorched fields, King’s College London (KCL) and its institutions emerge as alchemists of crisis, transmuting trauma into disciplines now foundational to modern medicine: epidemiology, psychiatry, and nutrition.
+    </p>
+    <p>
+        The journey begins with Florence Nightingale’s 1855 <span class="quote">“Nightingale Rose Diagram”</span>, a spiraling indictment of preventable Crimean War deaths. Her revelation—that filth, not bullets, killed soldiers—ignited sanitation reforms at St Thomas’ Hospital, framing hospitals as spaces of science. This ethos bled into World War I, where Joseph Lister’s antiseptic surgery met the trenches’ carnage, while “shell shock” (a precursor to PTSD) emerged in soldiers’ fractured letters. Bethlem Hospital’s experimental therapies—a 1917 electrotherapy machine humming beside a nurse’s diary—ask: Can minds be mended like bones?
+    </p>
+    <p>
+        The final act turns to WWII, where KCL’s nutrition program countered famine’s silent siege. A 1943 ration book, scrawled with vitamin breakthroughs, mirrors Nightingale’s data-driven pragmatism, stitching eras together.
+    </p>
+    <p>
+        Like Werner Herzog’s <span class="quote">“ecstatic truth”</span>, this exhibition weaves fact and humanity into relics: a rusted Crimean scalpel rests near WWII dietary charts, their proximity a whisper—war’s wounds are universal, but so is healing’s stubborn light. By framing medicine as both artifact and allegory, the show interrogates: Can destruction’s lessons illuminate our present? KCL’s legacy answers not with certainty, but with tools forged in fire—a testament to hope’s fragile, relentless pulse.
+    </p>
+</div>
+    
+    
+<div class="parttitle" style="background-image: url(30.jpg); height: 300px; margin-top:auto; margin-left: 0; margin-right: 0; margin-top: 50px; position: relative; margin-bottom: -60px;">
+    <h3 style="color: black; position: absolute; bottom: 5px; left: 35%;color:black;
+            font-size: 50px;
+            font-family: sans-serif;">Crimean War</h3>
+</div>
+    <div id="chapter1" class="section bg-colored">
+  <div class="section-divider" style="margin-left: 230px;margin-bottom: -100px;"></div>
+        <div class="content" id="scroll-content">
+          
+            <div class="text" id="scroll-text" style="height: auto; color: white; margin-left: 50px; margin-right: 60px; text-align:left; font-family:'IBM Plex Sans'; max-height: none;margin-top: 100px;">
+                
+                
+                
+                <p>
+  <span style="font-size: 64px; font-family: 'Georgia'">W</span>
+  <span style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8; margin-left: 5px;">
+    elcome to our online exhibition, exploring the profound contributions of King's College London to the history of war medicine. Florence Nightingale, known as the "Lady with the Lamp," made outstanding contributions during the Crimean War (1853–1856), where her pioneering efforts greatly improved hospital conditions and reduced mortality rates. She innovatively used data visualization to analyze soldier casualties, particularly through the creation of the Nightingale Rose Diagram, which vividly illustrated how the death rates from preventable diseases like typhus, cholera, and dysentery surpassed those from battle wounds. This visual representation played a crucial role in advocating for better sanitary practices and hospital management, emphasizing the critical impact of hygiene on soldier survival. Her groundbreaking work not only brought immediate improvements to medical care but also laid a vital foundation for the nursing profession, highlighting the importance of hygiene and systematic care.
+  </span>
+</p>
+  <div style="display: flex; justify-content: space-between; margin-top: -150px; margin-left: -90px; max-width: 500px; gap: 5px;">
+    <div style="text-align: left;margin-left: -40px;">
+        <img aria-label="click to enlarge" src="1-2.jpg" style="width: 250px;" class="clickable-image" />
+        <div class="image-label" style="margin-right: -30px;">
+            <p style="font-weight: 600;">Relative Mortality Rates of Foot Guards and English Male Population</p>
+            <p>1858</p>
+            <p>These two graphs compare mortality rates of Foot Guards and the Army at home across age groups, highlighting differences from the general English male population. </p>
+        </div>
+    </div>
+
+    <div style="text-align: left; margin-right: -30px;">
+        <img src="1-3.jpg" style="width: 300px;" class="clickable-image" />
+        <div class="image-label" style="margin-right: -40px;">
+            <p style="font-weight: 600; ">Diagram Representing Mortality in Hospitals</p>
+            <p>1858</p>
+            <p>Following Nightingale’s 1854 arrival, her hospital and nursing reforms gradually reduced mortality from October 1854 to September 1855, as shown in this diagram, demonstrating the success of her healthcare improvements. </p>
+        </div>
+    </div>
+</div>
+                
+            </div>
+<div class="image" id="scroll-image" style="align-content:flex-start">
+    <img src="1-1.jpg" aria-label="click to enlarge the photo" style="width: 450px; margin-left: -100px;"class="clickable-image" />
+    <div class="image-label" style="margin-left: 25px;"><p style="font-weight: 600;">Nightingale Rose Diagram of the causes of mortality in the army</p>
+        <p>1858</p>
+        <p>These two diagrams illustrate causes of soldiers’ deaths over two years. It reveals that preventable diseases, not battlefield wounds, caused the highest mortality, highlighting the impact of Nightingale’s hospital reforms. </p>
+    </div>
+</div>
+
+<!-- 模态框结构，用于点击图片后放大 -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div class="caption"></div>
+</div>
+
+        </div>
+    </div>
+    
+    
+    
+    
+
+<div id="chapter1-1" style="background-color: #3F5C5F; padding: 40px;margin-bottom: -50px;">
+  
+    <div id="scroll-content1" style="display: flex; gap: 40px; margin-left: 50px; align-items: flex-start;">
+          
+        <!-- 左侧文本和图片 -->
+        <div id="scroll-text" style="color: white; font-family:'IBM Plex Sans'; flex: 1; max-width: 50%;">
+            <p>
+                <span style="font-size: 64px; font-family: 'Georgia'">A</span>
+                <span style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8;">
+                    fter the war, Nightingale founded the Nightingale Training School for Nurses at St. Thomas' Hospital in 1860 to pass on her knowledge and establish nursing as a respected profession. This school was the first of its kind and became a model for nursing education worldwide. Over time, the Nightingale Training School evolved and became the predecessor of KCL's Florence Nightingale Faculty of Nursing, Midwifery & Palliative Care. KCL's Nightingale Faculty continues to uphold her legacy by advancing nursing education, research, and practice, ensuring that her pioneering spirit lives on. Through her work at St. Thomas' Hospital and her enduring legacy at KCL, Nightingale's contributions to war medicine and nursing continue to inspire and inform contemporary medical practices.
+                </span>
+            </p>
+
+            <!-- 图片1-5 -->
+            <img src="1-5.jpg" style="width:500px; height: auto; margin-top: 20px;margin-left: 0px; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;margin-left: 0px;">
+                <p style="font-weight: 600;">FLORENCE NIGHTINGALE AND HER GRADUATING NURSES</p>
+                <p>1886</p>
+                <p>Florence Nightingale (1820–1910), the founder of modern nursing, is shown here with her graduating class of nurses at St. Thomas' Hospital.</p>
+                <p style="padding-bottom: 100px;">Thackray Museum of Medicine <br>Licensed under CC BY-SA 4.0 </p>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+    <iframe width="500" height="315" src="https://www.youtube.com/embed/2tXBW2FpufY" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen style="margin-top: -100px;margin-left: -60px;">
+          
+    </iframe>
+                <p style="font-weight: 600;text-align: left;">A Very Brief History of Old St Thomas' Hospital</p>
+           <div class="section-divider" style="margin-left: 100px;margin-top:30px; padding-bottom:0px;"></div>   
+</div>
+
+        </div>
+
+        <!-- 右侧图片 -->
+        <div id="scroll-image1" style="flex: 1; margin-top: -50px; width: 300px; display: flex; flex-direction: column; align-items: flex-start;">
+            <img src="1-4.jpg" style="width: 80%; height: auto; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;">
+                <p style="font-weight: 600;">Old St. Thomas's Hospital, Southwark</p>
+                <p>This image shows the first courtyard of the old St. Thomas's Hospital in Southwark. St. Thomas's Hospital has a long history of providing medical care, dating back to the 12th century.</p>
+            
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+            
+            
+            
+            
+
+<!-- 模态框结构，用于点击图片后放大 -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div class="caption"></div>
+</div>
+
+        </div>
+    </div>
+    
+   
+
+
+<div class="parttitle" style="background-image: url(30-1.jpg); height: 300px; margin-top:auto; margin-left: 0; margin-right: 0; margin-top: 50px; position: relative; margin-bottom: -60px;">
+    
+    
+    <h3 style="color: black; position: absolute; bottom: 5px; left: 35%;color:black;
+            font-size: 50px;
+            font-family: sans-serif;">World War One</h3>
+   
+</div>
+
+    <div id="chapter2" style="background-color: #4A5C42; margin-top: 60px;">
+
+        <div class="content" id="scroll-content">
+        
+            <div class="text" id="scroll-text" style="height: auto; color: white; margin-left: 80px; margin-right: 60px; text-align:left; font-family:'IBM Plex Sans'; max-height: none;margin-top: 100px;width: 550px;margin-bottom: 70px;">    
+                
+            <div style="width: 200px; height: 2px; background-color: #ccc; margin-bottom: 10px;"></div>
+                <p>
+  <span style="font-size: 64px; font-family: 'Georgia'">D</span>
+  <span style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8; margin-left: 5px;">
+      uring World War I, "shell shock" emerged as a serious condition, causing paralysis and psychological distress among soldiers. Initially seen as weakness, it is now recognized as an early form of PTSD. KCL played a key role in advancing treatments through physiotherapy, psychotherapy, and rehabilitation, shaping modern PTSD care.</span></p>
+                
+                <div id="shell-shock" style="background-color: #f4f4f4; padding: 20px; margin-top: 20px; border-radius: 10px;">
+    <h2 style="font-family: 'Georgia', serif; font-size: 24px; color: #2c3e50;">Shell Shock and KCL’s Contribution to PTSD Treatment</h2>
+    
+    <p style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8; color: #333;">
+        During World War I, "shell shock" emerged as a major psychological condition among soldiers, causing paralysis, tremors, and mental distress. Initially misunderstood as weakness, it is now recognized as an early form of PTSD. 
+        King’s College London played a crucial role in developing treatments, combining physiotherapy, psychotherapy, and rehabilitation, which laid the groundwork for modern PTSD care.  
+    </p>
+
+
+    <div style="margin-top: 15px; background-color: #ecf0f1; padding: 10px; border-radius: 5px; display: flex; align-items: center;" aria-label="This section has an audio recording of testimony from a WWI shell shock survivor." >
+        <img src="shell.jpg" alt="Audio Icon" style="width: 40px; height: 80px; margin-right: 10px;">
+        <div>
+            <p style="margin: 0; font-weight: bold; color: #2c3e50;">▶️ Survivor Testimony - Shell Shock Experience</p>
+            <audio controls style="width: 100%; margin-top: 5px;">
+                <source src="1111.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p style="font-size: 14px; color: #7f8c8d; margin-top: 5px;">Testimony from a WWI shell shock survivor, recalling the psychological toll of war.<br>Source: <a href="https://www.iwm.org.uk/history/voices-of-the-first-world-war-shell-shock">Click to jump to the original page for the text.</a></p>
+        </div>
+    </div>
+</div>
+    
+                
+<p style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8; ">
+Bethlem Royal Hospital, known as "Bedlam," one of the world's oldest mental health institutions, became a center for treating war-related trauma during this time. KCL's collaboration with Bethlem advanced psychiatric research and treatment, laying the foundation for modern approaches to war-induced psychological conditions.
+</p>
+                
+  <div style="display: flex; justify-content: space-between; margin-top: -150px; margin-left: -90px; max-width: 500px; gap: 5px;">
+    <div style="text-align: left;margin-left: -40px;">
+        <img src="2-4.jpg" style="width: 230px;height: auto;" class="clickable-image" />
+        <div class="image-label" style="margin-right: -15px;">
+            <p style="font-weight: 600;">Hand-drawn drawing of Bethlehem Hospital and the surrounding area in the medieval period</p>
+            <p>Bethlehem Hospital, one of the oldest mental hospitals and a precursor to today's Bethlehem Royal Hospital, began as a charitable asylum outside the walls of London. By the 17th century, it had become a major centre for the treatment of mental illness, earning it the nickname ‘Bedlam’. </p>
+        </div>
+    </div>
+
+    <div style="text-align: left; margin-right: -30px;">
+        <img src="2-3.jpg" style="width: 280px; height: auto" class="clickable-image" />
+        <div class="image-label" style="margin-right: -40px;">
+            <p style="font-weight: 600; ">Image of patient in Bethlehem Hospital </p>
+            <p>This 19th-century medical illustration depicts a mentally ill patient immobilised in a straitjacket, the corset had been used to prevent patients from self-harming, symbolising the control and restriction of patients in the Bethlehem Hospital of the time.  </p>
+        </div>
+    </div>
+</div>
+                
+            </div>
+<div class="image" id="scroll-image2" style="align-content:flex-start;margin-top: -30px;">
+    
+    
+    
+    
+    
+    
+    <img src="2-2.jpg" style="width: 420px;height: auto; margin-left: -100px;"class="clickable-image" />
+    <div class="image-label" style="margin-left: 50px;"><p style="font-weight: 600;">Pages taken from book regarding ‘shell shock’ (First world war)p150-151 </p>
+        <p>1919</p>
+        <p>During World War I, many soldiers developed Shell Shock, causing functional paralysis like Spastic Paraplegia and Camptocormia. Initially misunderstood as weakness, research by KCL advanced treatments, integrating physiotherapy, psychotherapy, and rehabilitation, shaping modern PTSD care. </p>
+    </div>
+</div>
+
+<!-- 模态框结构，用于点击图片后放大 -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div class="caption"></div>
+</div>
+
+        </div>
+    </div>
+    
+    
+
+<div id="chapter2-1" style="background-color: #40444E; padding: 40px;">
+  
+    <div id="scroll-content1" style="display: flex; gap: 40px; margin-left: 50px; align-items: flex-start;">
+          
+        <!-- 左侧文本和图片 -->
+        <div id="scroll-text" style="color: white; font-family:'IBM Plex Sans'; flex: 1; max-width: 50%;">
+            <p>
+                <span style="font-size: 64px; font-family: 'Georgia'">J</span>
+                <span style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8;">
+                    oseph Lister's theory of aseptic surgery had a profound influence on wartime medicine during World War I. Lister’s 19th-century approach to antimicrobial surgery and aseptic practices provided surgeons with effective tools to treat battlefield injuries, especially open wounds from explosions and gunshots, which were highly prone to fatal infections.</span></p>
+
+<p style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8;">Although antibiotics were not yet available during WWI, field surgeons adopted Lister's principles, using antiseptics to clean wounds and minimizing exposure to air, which significantly reduced infection rates and improved survival outcomes. According to KCL and the Royal Institution of Great Britain, KCL-trained medical professionals played a key role in implementing these techniques in war hospitals and on the front line. This not only increased the success rate of surgical procedures but also laid a foundation for modern trauma care and surgical techniques. Lister’s influence, reinforced by KCL’s research and training, shaped the development of wartime medicine and contributed to long-term advancements in surgical practices.
+
+            </p>
+
+            <!-- 图片1-5 -->
+            <img src="2-6.jpg" style="width:500px; height: auto; margin-top: 20px;margin-left: 0px; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;margin-left: 0px;">
+                <p style="font-weight: 600;">British Army Operating Theatre Near Boulogne, World War I </p>
+                <p>1914–1918 </p>
+                <p>This photograph shows a British Army field hospital operating theatre during World War I, with surgeons performing an operation on a wounded soldier. It highlights the use of antiseptic techniques. </p>
+                <p style="padding-bottom: 100px;">Wellcome Collection <br>Public Domain</p>
+            </div>
+        </div>
+
+        <!-- 右侧图片 -->
+        <div id="scroll-image3" style="flex: 1; margin-top: -110px; width: 300px; display: flex; flex-direction: column; align-items: flex-start;">
+            <img src="2-5.jpg" style="width: 70%; height: auto; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;">
+                <p style="font-weight: 600;">Portrait of Joseph Lister </p>
+                <p>1933</p>
+                <p>Photograph of an oil painting of Joseph Lister, 1st Baron Lister (1827-1912), British surgeon and pioneer of antiseptic surgery. </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+            
+            
+            
+            
+<div class="section-divider" style="margin-left: 230px;margin-top:-80px; padding-bottom: 20px;"></div>
+<!-- 模态框结构，用于点击图片后放大 -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div class="caption"></div>
+</div>
+
+        </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="parttitle" style="background-image: url(30-2.jpg); height: 300px; margin-top:auto; margin-left: 0; margin-right: 0; margin-top: 50px; position: relative; margin-bottom: -60px;">
+    
+    
+    <h3 style="color: black; position: absolute; bottom: 5px; left: 35%;color:black;
+            font-size: 50px;
+            font-family: sans-serif;">World War Two</h3>
+   
+</div>
+
+ 
+<div id="chapter3" style="background-color: #252F36; padding: 40px;">
+  
+    <div id="scroll-content1" style="display: flex; gap: 40px; margin-left: 50px; align-items: flex-start;">
+          
+        <!-- 左侧文本和图片 -->
+        <div id="scroll-text" style="color: white; font-family:'IBM Plex Sans'; flex: 1; max-width: 50%;margin-top: 100px;">
+            <div style="width: 200px; height: 2px; background-color: #ccc; margin-bottom: 10px;margin-left: 130px;"></div>
+            <p>
+                <span style="font-size: 64px; font-family: 'Georgia'">D</span>
+                <span style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8;">
+                    uring World War II, nutritionists identified key dietary challenges faced by soldiers and civilians under rationing. Researchers like John Yudkin and Elsie Widdowson investigated issues such as vitamin deficiencies, calorie requirements, and the effects of malnutrition. Their findings helped shape military rations and public food policies to maintain health despite food shortages. 
+</span></p>
+
+<p style="font-family: 'Georgia', serif; font-size: 16px; line-height: 1.8;">After the war, Queen Elizabeth College, originally founded as King’s College for Women in 1908, became a leading institution in nutrition research. It was formally granted a Royal Charter in 1953 and later merged into King’s College London. Under Yudkin’s leadership, it established one of Europe’s first academic nutrition departments, expanding on wartime discoveries to explore obesity, heart disease, and metabolic health. The college’s work laid the foundation for modern nutritional science, influencing both military and civilian health policies globally.
+
+            </p>
+
+            <!-- 图片1-5 -->
+            <img src="3-2.jpg" style="width:300px; height: auto; margin-top: 20px;margin-left: 60px; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;margin-left: 0px;">
+                <p style="font-weight: 600;">Portrait of John Yudkin </p>
+                <p style="padding-bottom: 100px;">John Yudkin was a pioneering British physiologist and nutritionist who discovered that riboflavin deficiency, rather than infection, caused a skin disease among African soldiers during WWII. He later established the first BSc degree in nutrition in Europe at Queen Elizabeth College, shaping modern nutritional science. <br>Licensed under CC BY-SA 4.0</p>
+    
+            </div>
+        </div>
+
+        <!-- 右侧图片 -->
+        <div id="scroll-image4" style="flex: 1; margin-top: -80px; width: 300px; display: flex; flex-direction: column; align-items: flex-start;">
+            <img src="3-1.jpg" style="width: 70%; height: auto; cursor: pointer;" class="clickable-image" />
+            <div class="image-label" style="margin-top: 10px;">
+                <p style="font-weight: 600;">Postgraduate Diploma in Nutrition, Queen Elizabeth College</p>
+                <p>1965-1966</p>
+                <p>This 1965-66 photograph captures students and faculty of the Postgraduate Diploma in Nutrition at Queen Elizabeth College, a pioneering program in nutrition science education. </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+            
+            
+            
+            
+<div class="section-divider" style="margin-left: 230px;margin-top:-80px; padding-bottom: 20px;"></div>
+<!-- 模态框结构，用于点击图片后放大 -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div class="caption"></div>
+</div>
+
+        </div>
+    </div>
+    
+ 
+
+
+
+
+
+
+    <div class="section comment-section">
+    <h2>We Value Your Feedback</h2>
+    <p>Please leave your comments and feedback.</p>
+    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=FM9wg_MWFky4PHJAcWVDVjQ3EV3ZpC5KvVExNcFtq39UNzZIN0k5VFdJRTAyTUs0VzUzR1pNQThZUy4u">
+        <button aria-label="Click to jump to the feedback collection page.">Leave a Comment</button>
+        </a>
+</div>
+    
+
+
+    <div class="footer">
+        <button>Contact us</button>
+    </div>
+
+    <script>
+        // JavaScript for smooth scrolling
+        document.querySelectorAll('.nav-buttons a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // JavaScript for handling scroll behavior in second section
+        window.addEventListener('scroll', function() {
+    var imageElement = document.getElementById('scroll-image');
+    var section = document.getElementById('chapter1');
+    
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+    var scrollPosition = window.scrollY - sectionTop;
+
+    if (scrollPosition >= 0 && scrollPosition < sectionHeight) {
+        // 限制最大偏移量，防止文字和图片无限滑动
+        var maxTranslate = 500; // 你可以调整这个数值，控制最大移动范围
+        var imageMove = Math.min(scrollPosition * 1, maxTranslate); // 图片向上移动
+        
+        imageElement.style.transform = `translateY(${imageMove}px)`;
+    }
+});
+
+       // JavaScript for handling scroll behavior in second section
+        window.addEventListener('scroll', function() {
+    var imageElement = document.getElementById('scroll-image1');
+    var section = document.getElementById('chapter1-1');
+    
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+    var scrollPosition = window.scrollY - sectionTop;
+
+    if (scrollPosition >= 0 && scrollPosition < sectionHeight) {
+        // 限制最大偏移量，防止文字和图片无限滑动
+        var maxTranslate = 800; // 你可以调整这个数值，控制最大移动范围
+        var imageMove = Math.min(scrollPosition * 1, maxTranslate); // 图片向上移动
+        
+        imageElement.style.transform = `translateY(${imageMove}px)`;
+    }
+});
+
+    // JavaScript for handling scroll behavior in second section
+        window.addEventListener('scroll', function() {
+    var imageElement = document.getElementById('scroll-image2');
+    var section = document.getElementById('chapter2');
+    
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+    var scrollPosition = window.scrollY - sectionTop;
+
+    if (scrollPosition >= 0 && scrollPosition < sectionHeight) {
+        // 限制最大偏移量，防止文字和图片无限滑动
+        var maxTranslate = 1000; // 你可以调整这个数值，控制最大移动范围
+        var imageMove = Math.min(scrollPosition * 1, maxTranslate); // 图片向上移动
+        
+        imageElement.style.transform = `translateY(${imageMove}px)`;
+    }
+});
+
+     
+        
+        // JavaScript for handling scroll behavior in second section
+        window.addEventListener('scroll', function() {
+    var imageElement = document.getElementById('scroll-image3');
+    var section = document.getElementById('chapter2-1');
+    
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+    var scrollPosition = window.scrollY - sectionTop;
+
+    if (scrollPosition >= 0 && scrollPosition < sectionHeight) {
+        // 限制最大偏移量，防止文字和图片无限滑动
+        var maxTranslate = 500; // 你可以调整这个数值，控制最大移动范围
+        var imageMove = Math.min(scrollPosition * 1, maxTranslate); // 图片向上移动
+        
+        imageElement.style.transform = `translateY(${imageMove}px)`;
+    }
+});
+
+        
+   // JavaScript for handling scroll behavior in second section
+        window.addEventListener('scroll', function() {
+    var imageElement = document.getElementById('scroll-image4');
+    var section = document.getElementById('chapter3');
+    
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+    var scrollPosition = window.scrollY - sectionTop;
+
+    if (scrollPosition >= 0 && scrollPosition < sectionHeight) {
+        // 限制最大偏移量，防止文字和图片无限滑动
+        var maxTranslate = 700; // 你可以调整这个数值，控制最大移动范围
+        var imageMove = Math.min(scrollPosition * 1, maxTranslate); // 图片向上移动
+        
+        imageElement.style.transform = `translateY(${imageMove}px)`;
+    }
+});     
+        
+    const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const closeBtn = document.querySelector('.close');
+  const images = document.querySelectorAll('.clickable-image'); // 选取所有的 clickable-image
+
+  
+        
+        // 给每个图片添加点击事件
+  images.forEach(img => {
+      img.addEventListener('click', () => {
+          modal.style.display = 'block';
+          modalImg.src = img.src;
+      });
+  });
+
+  // 关闭模态框
+  closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+  });
+
+  // 点击模态框外部关闭
+  window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+          modal.style.display = 'none';
+      }
+  });
+    
+    </script>
+</body>
+</html>
